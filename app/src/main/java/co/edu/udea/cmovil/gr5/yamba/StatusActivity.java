@@ -2,15 +2,34 @@ package co.edu.udea.cmovil.gr5.yamba;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
-public class StatusActivity extends AppCompatActivity {
+public class StatusActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String TAG = "StatusActivity";
+    private EditText editStatus;
+    private Button buttonTweet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
+
+        editStatus = (EditText) findViewById(R.id.editStatus);
+        buttonTweet = (Button) findViewById(R.id.buttonTweet);
+
+        buttonTweet.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view){
+        String status = editStatus.getText().toString();
+        Log.d(TAG, "onClicked with status: " + status);
     }
 
     @Override
@@ -19,6 +38,7 @@ public class StatusActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_status, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
